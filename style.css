@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 body{
-    background: rgb(255, 255, 255) url(assets/background.png) center center no-repeat fixed; 
+    background: rgb(255, 255, 255) url(./assets/background.png) center center no-repeat fixed; 
     background-size: cover;
     height: 96vh;
     

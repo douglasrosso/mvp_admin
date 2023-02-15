@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
 body{
-    background: black url("assets/background.png") center center no-repeat fixed;
+    background: black url("../assets/background.png") center center no-repeat fixed;
     background-size: cover;
 }
 h1{
