@@ -19,7 +19,7 @@ span{
     left: 50%;
     transform: translateX(-50%);
     width: 500px;
-    height: 700px;
+    height: 670px;
     border-radius: 10px;
     background-color: white;
     top: 10%;
@@ -84,7 +84,7 @@ img{
     position: relative;
     left: 50%;
     transform: translateX(-50%);
-    margin-top: 3%;
+    margin-top: .3%;
 }
 
 ::placeholder{

@@ -1,66 +1,85 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="../assets/icon_useall.png">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="../assets/icon_useall.png" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    <script src="main.js" defer></script>
 
     <title>Cadastro Unidade Consumidora</title>
+  </head>
 
-</head>
-
-<body>
-
+  <body>
     <div id="caixabranca">
-        <h1>Cadastro <span>Unidade Consumidora</span></h1>
+      <h1>Cadastro <span>Unidade Consumidora</span></h1>
 
-        <div class="label_e_imput">
-            <label for="logradouro">Logradouro</label>
-            <input type="text" name="logradouro" placeholder="Rua, avenida, praça etc.">
-        </div>
+      <div class="label_e_imput">
+        <label for="logradouro">Logradouro</label>
+        <input
+          type="text"
+          name="logradouro"
+          placeholder="Rua, avenida, praça etc."
+        />
+      </div>
 
-        <div class="label_e_imput">
-            <label for="bairro">Bairro</label>
-            <input type="text" name="bairro" placeholder="Digite o nome do bairro">
-        </div>
+      <div class="label_e_imput">
+        <label for="bairro">Bairro</label>
+        <input
+          type="text"
+          name="bairro"
+          placeholder="Digite o nome do bairro"
+        />
+      </div>
 
-        <div class="label_e_imput">
-            <label for="num-casa">Número da Casa</label>
-            <input type="number" name="num-casa" placeholder="Digite o número da casa">
-        </div>
-<div class="label_e_imput">
-            <label for="complemento">Complemento</label>
-            <input type="text" name="complemento" placeholder="Complemento">
-        </div>
+      <div class="label_e_imput">
+        <label for="num-casa">Número da Casa</label>
+        <input
+          type="number"
+          name="num-casa"
+          placeholder="Digite o número da casa"
+        />
+      </div>
+      <div class="label_e_imput">
+        <label for="complemento">Complemento</label>
+        <input type="text" name="complemento" placeholder="Complemento" />
+      </div>
 
-        <div class="label_e_imput">
-            <label for="cep">CEP</label>
-            <input type="text" placeholder="Digite o número do CEP"
-                onkeypress="$(this).mask('00.000-000')">
-        </div>
+      <div class="label_e_imput">
+        <label for="cep">CEP</label>
+        <input
+          type="text"
+          placeholder="Digite o número do CEP"
+          onkeypress="$(this).mask('00.000-000')"
+        />
+      </div>
 
-        <div class="label_e_imput">
-            <label for="cpfcnpj">CPF/CNPJ</label>
-            <input class="cpfcnpj" id="cpfcnpj" type="text" name="cpfcnpj" placeholder="CPF/CNPJ" autocomplete="off">
-        </div>
+      <div class="label_e_imput">
+        <label for="cpfcnpj">CPF/CNPJ</label>
+        <input
+          class="cpfcnpj"
+          id="cpfcnpj"
+          type="text"
+          name="cpfcnpj"
+          placeholder="CPF/CNPJ"
+          autocomplete="off"
+        />
+      </div>
 
-        <div class="label_e_imput">
-            <label for="num-medidor">Número do Medidor</label>
-            <input type="number" name="num-medidor" placeholder="Digite o número do medidor">
-        </div>
+      <div class="label_e_imput">
+        <label for="num-medidor">Número do Medidor</label>
+        <input
+          type="number"
+          name="num-medidor"
+          placeholder="Digite o número do medidor"
+        />
+      </div>
 
-        <button type="submit">EFETUAR CADASTRO</button>
-
+      <button type="submit">EFETUAR CADASTRO</button>
     </div>
-    <script src="main.js"></script>
-    
-    
-    <img src="../assets/logo_useall.png" alt="logo useall">
-</body>
-    
+    <img src="../assets/logo_useall.png" alt="logo useall" />
+  </body>
 </html>
