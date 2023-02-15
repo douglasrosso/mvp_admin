@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+body{
+    background: black url("assets/background.png") center center no-repeat fixed;
+    background-size: cover;
+}
+h1{
+    text-align: center;
+    padding-top: 25px;
+    font-family: 'Roboto', sans-serif;
+}
+
+span{
+    color: #644FE0;;
+}
+
+#caixabranca{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    height: 700px;
+    border-radius: 10px;
+    background-color: white;
+    top: 10%;
+    box-shadow: 1px 0px 30px rgb(193, 192, 199);
+    font-family: 'Roboto', sans-serif;
+    font-weight: bolder;
+    
+}
+
+div.label_e_imput{
+    padding-left: 20%;   
+}
+
+label{
+    display: block;
+    margin-top: 10px;
+
+}
+
+input{
+    width: 300px;
+    height: 28px;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-top: 10px;
+    
+}
+input[type=number]::-webkit-inner-spin-button { 
+    -webkit-appearance: none;
+    
+}
+input[type=number] { 
+   -moz-appearance: textfield;
+   appearance: textfield;
+
+}
+
+button {
+    margin-top: 30px;
+    /*para ter um espaçamento entre eles*/
+    width: 40%;
+    color: rgb(255, 255, 255);
+    height: 4.5%;
+    outline: none;
+    margin-left: 30%;
+    background: rgb(48, 46, 46);
+    border: none;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+button:hover{
+    background-color: #644FE0;
+}
+
+img{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 3%;
+}
+
+::placeholder{
+    padding-left: 5px;
+}
