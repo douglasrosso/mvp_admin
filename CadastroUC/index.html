@@ -22,6 +22,7 @@
         <input
           type="text"
           name="logradouro"
+          id="logradouro"
           placeholder="Rua, avenida, praça etc."
         />
       </div>
@@ -31,6 +32,7 @@
         <input
           type="text"
           name="bairro"
+          id="bairro"
           placeholder="Digite o nome do bairro"
         />
       </div>
@@ -40,18 +42,20 @@
         <input
           type="number"
           name="num-casa"
+          id="numerocasa"
           placeholder="Digite o número da casa"
         />
       </div>
       <div class="label_e_imput">
         <label for="complemento">Complemento</label>
-        <input type="text" name="complemento" placeholder="Complemento" />
+        <input type="text" name="complemento" id="complemento" placeholder="Complemento" />
       </div>
 
       <div class="label_e_imput">
         <label for="cep">CEP</label>
         <input
           type="text"
+          id="cep"
           placeholder="Digite o número do CEP"
           onkeypress="$(this).mask('00.000-000')"
         />
@@ -74,11 +78,12 @@
         <input
           type="number"
           name="num-medidor"
+          id="numerodomedidor"
           placeholder="Digite o número do medidor"
         />
       </div>
 
-      <button type="submit">EFETUAR CADASTRO</button>
+      <button  type="submit" id="btn">EFETUAR CADASTRO</button>
     </div>
     <img src="../assets/logo_useall.png" alt="logo useall" />
   </body>
