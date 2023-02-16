@@ -10,6 +10,25 @@ let nome = document.getElementById("nome")
 let cpfcnpj = document.getElementById("cpfcnpj")
 let telefone = document.getElementById("telefone")
 let telefone2 = document.getElementById("telefone2")
+let cpfcnpjDigitado
+
+
+function TiraSinais() {
+  if (cpfcnpj.value.length == 14) {
+    cpfcnpjDigitado =
+      cpfcnpj.value.slice(0, 3) +
+      cpfcnpj.value.slice(4, 7) +
+      cpfcnpj.value.slice(8, 11) +
+      cpfcnpj.value.slice(12, 14);
+  } else {
+    cpfcnpjDigitado =
+      cpfcnpj.value.slice(0, 2) +
+      cpfcnpj.value.slice(3, 6) +
+      cpfcnpj.value.slice(7, 10) +
+      cpfcnpj.value.slice(11, 15) +
+      cpfcnpj.value.slice(16, 18);
+  }
+}
 
 function postUser() {
 
@@ -22,7 +41,7 @@ function postUser() {
   },
   body: JSON.stringify({
       Nome_Consumidor: nome.value,
-      Doc_Consumidor: cpfcnpj.value,
+      Doc_Consumidor: cpfcnpjDigitado,
       Telefone1: telefone.value,
       Telefone2: telefone2.value
   })
@@ -30,15 +49,25 @@ function postUser() {
 .then(function (response) {
   if (response.status == 201) {
     alert("Consumidor cadastrado");
-
+    LimpaCampos()
   }
   else if(response.status == 409){
       alert("Consumidor Ja existe no banco de dados");
   }
 })
 }
+
+function LimpaCampos() {
+  nome.value = "";
+  cpfcnpj.value = "";
+  telefone.value = "";
+  telefone2.value= "";
+
+}
+
 var button = document.querySelector("button");
 button.addEventListener("click", function (event) {
 event.preventDefault();
+TiraSinais()
 postUser()
 });
