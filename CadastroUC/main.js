@@ -18,6 +18,7 @@ let bairro = document.getElementById("bairro");
 let codConsumidor;
 let documentoDigitado;
 let cepDigitado;
+let btn = document.getElementById("btn");
 
 function TiraSinais() {
   if (documento.value.length == 14) {
@@ -39,12 +40,11 @@ function TiraSinais() {
 }
 
 function getConsumidor() {
+  TiraSinais();
   fetch(`https://localhost:7230/Consumidor/Documento/${documentoDigitado}`)
     .then((response) => response.json())
     .then((data) => {
-      var apiData = JSON.stringify(data);
       codConsumidor = data.cod_Consumidor;
-      postUser();
     })
     .catch((error) => console.error(error));
 }
@@ -69,7 +69,6 @@ function postUser() {
   }).then(function (response) {
     if (response.status == 201) {
       alert("Consumidor Inserido");
-      LimpaCampos();
     } else {
       alert("Houve um problema, no envio da requesição");
     }
@@ -86,9 +85,8 @@ function LimpaCampos() {
   bairro.value = "";
 }
 
-btn = document.getElementById("btn");
-btn.addEventListener("click", function (event) {
-  event.preventDefault();
-  TiraSinais();
-  getConsumidor();
+btn.addEventListener("click", function (e) {
+  e.preventDefault();
+  postUser();
+  LimpaCampos();
 });

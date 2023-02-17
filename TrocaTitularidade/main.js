@@ -1,3 +1,10 @@
+let btnNumUC = document.getElementById("btnNumUC");
+let btnDoc = document.getElementById("btnCpfCnpj");
+let btnConfirmar = document.getElementById("btnConfirmar");
+let codConsumidor;
+let documentoDigitado;
+let validacao;
+
 var options = {
   onKeyPress: function (cpf, ev, el, op) {
     var masks = ["000.000.000-000", "00.000.000/0000-00"];
@@ -8,4 +15,74 @@ $(".cpfcnpj").length > 11
   ? $(".cpfcnpj").mask("00.000.000/0000-00", options)
   : $(".cpfcnpj").mask("000.000.000-00#", options);
 
-  let btnNumUC = dococ
+function TiraSinais() {
+  if (btnDoc.value.length == 14) {
+    documentoDigitado =
+      btnDoc.value.slice(0, 3) +
+      btnDoc.value.slice(4, 7) +
+      btnDoc.value.slice(8, 11) +
+      btnDoc.value.slice(12, 14);
+  } else {
+    documentoDigitado =
+      btnDoc.value.slice(0, 2) +
+      btnDoc.value.slice(3, 6) +
+      btnDoc.value.slice(7, 10) +
+      btnDoc.value.slice(11, 15) +
+      btnDoc.value.slice(16, 18);
+  }
+  verificaDoc();
+}
+
+function verificaDoc() {
+  fetch(
+    `https://localhost:7230/Consumidor/Documento/${documentoDigitado}`
+  ).then((response) => {
+    if (response.status == 200) {
+      validacao = true;
+      codConsumidor = response.cod_Consumidor;
+    } else {
+      validacao = false;
+      alert("Documento não cadastrado");
+    }
+  });
+}
+
+function patchNewTitular() {
+  if (validacao == true) {
+    fetch(`https://localhost:7230/UC/TrocaTitularidade/${btnNumUC.value}`, {
+      method: "PUT",
+      headers: {
+        Accept: "*//*",
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        Cod_consumidor: 5,
+      }),
+    }).then(function (response) {
+      if (response.status == 200) {
+        alert("Titularidade Alterada");
+      } else if (response.status == 404) {
+        alert("UC não cadastrada");
+      } else {
+        alert("Houve um problema, no envio da requesição");
+      }
+    });
+  } else {
+    alert("Insira um documento válido");
+  }
+}
+
+function LimpaCampos() {
+  btnDoc.value = "";
+  btnNumUC.value = "";
+}
+
+btnDoc.addEventListener("change", function () {
+  TiraSinais();
+});
+
+btnConfirmar.addEventListener("click", function (e) {
+  e.preventDefault();
+  patchNewTitular();
+  LimpaCampos();
+});
