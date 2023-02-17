@@ -48,7 +48,7 @@ function verificaDoc() {
 }
 
 function patchNewTitular() {
-  if (validacao == true) {
+  if (validacao) {
     fetch(`https://localhost:7230/UC/TrocaTitularidade/${btnNumUC.value}`, {
       method: "PUT",
       headers: {
