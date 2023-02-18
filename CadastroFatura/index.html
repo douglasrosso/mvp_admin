@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="../assets/icon_useall.png" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    <script src="main.js" defer></script>
+
+    <title>Cadastro Faturas</title>
+  </head>
+
+  <body>
+    <form>
+      <div class="label-input">
+        <h1>Cadastro <span>Faturas</span></h1>
+        <label for="num-medidor">Código da UC</label>
+        <input type="number" id="codUC" placeholder="Digite o código UC" />
+        <label for="cpfcnpj">CPF/CNPJ</label>
+        <input
+          class="cpfcnpj"
+          id="cpfcnpj"
+          type="text"
+          placeholder="CPF/CNPJ"
+          autocomplete="off"
+        />
+        <label for="competencia">Competência</label>
+        <input
+          type="date"
+          id="competencia"
+          placeholder="Digite a Competência"
+        />
+        <input type="submit" id="btn" value="ADICIONAR ITEM" />
+      </div>
+      <main class="hide">
+        <table class="tabelaItens">
+          <tr>
+            <th><span>Descrição</span></th>
+            <th><span>Quantidade</span></th>
+            <th><span>Valor Unitário</span></th>
+          </tr>
+        </table>
+      </main>
+    </form>
+    <img src="../assets/logo_useall.png" alt="logo useall" />
+  </body>
+</html>
