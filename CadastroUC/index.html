@@ -16,73 +16,86 @@
   <body>
     <div id="caixabranca">
       <h1>Cadastro <span>Unidade Consumidora</span></h1>
-      <div class="label_e_imput">
-        <label for="logradouro">Logradouro</label>
-        <input
-          type="text"
-          name="logradouro"
-          id="logradouro"
-          placeholder="Rua, avenida, praça etc."
-        />
-      </div>
 
-      <div class="label_e_imput">
-        <label for="bairro">Bairro</label>
-        <input
-          type="text"
-          name="bairro"
-          id="bairro"
-          placeholder="Digite o nome do bairro"
-        />
-      </div>
-
-      <div class="label_e_imput">
-        <label for="num-casa">Número da Casa</label>
-        <input
-          type="number"
-          name="num-casa"
-          id="numerocasa"
-          placeholder="Digite o número da casa"
-        />
-      </div>
-      <div class="label_e_imput">
-        <label for="complemento">Complemento</label>
-        <input type="text" name="complemento" id="complemento" placeholder="Complemento" />
-      </div>
-
-      <div class="label_e_imput">
+      <div class="label_e_input">
         <label for="cep">CEP</label>
         <input
           type="text"
           id="cep"
           placeholder="Digite o número do CEP"
           onkeypress="$(this).mask('00.000-000')"
+          value="88925000"
         />
       </div>
 
-      <div class="label_e_imput">
-        <label for="cpfcnpj">CPF/CNPJ</label>
+      <div class="label_e_input">
+        <label for="logradouro">Logradouro</label>
         <input
-          class="cpfcnpj"
-          id="cpfcnpj"
           type="text"
-          name="cpfcnpj"
-          placeholder="CPF/CNPJ"
-          autocomplete="off"
+          name="logradouro"
+          id="logradouro"
+          placeholder="Rua, avenida, praça etc."
+          value="Pedro Bial"
         />
       </div>
 
-      <div class="label_e_imput">
+      <div class="label_e_input">
+        <label for="bairro">Bairro</label>
+        <input
+          type="text"
+          name="bairro"
+          id="bairro"
+          placeholder="Digite o nome do bairro"
+          value="Centro"
+        />
+      </div>
+
+      <div class="label_e_input">
+        <label for="complemento">Complemento</label>
+        <input
+          type="text"
+          name="complemento"
+          id="complemento"
+          placeholder="Complemento"
+          value="Casa"
+        />
+      </div>
+
+      <div class="label_e_input">
+        <label for="num-casa">Número</label>
+        <input
+          type="number"
+          name="num-casa"
+          id="numerocasa"
+          placeholder="Digite o número da casa"
+          value="325"
+        />
+      </div>
+
+      <div class="label_e_input">
         <label for="num-medidor">Número do Medidor</label>
         <input
           type="number"
           name="num-medidor"
           id="numerodomedidor"
           placeholder="Digite o número do medidor"
+          value="246"
         />
       </div>
 
-      <button  type="submit" id="btn">EFETUAR CADASTRO</button>
+      <div class="label_e_input">
+        <label for="listDoc">CPF/CNPJ</label>
+        <input
+          type="text"
+          list="listDoc"
+          class="cpfcnpj"
+          placeholder="CPF/CNPJ"
+          autocomplete="off"
+        />
+        <datalist id="listDoc"> </datalist>
+      </div>
+
+      <button type="submit" id="btnConfirmar">EFETUAR CADASTRO</button>
     </div>
     <img src="../assets/logo_useall.png" alt="logo useall" />
   </body>
