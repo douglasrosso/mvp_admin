@@ -36,7 +36,6 @@ div.label_e_imput{
 label{
     display: block;
     margin-top: 10px;
-
 }
 
 input{
@@ -45,8 +44,8 @@ input{
     border: 1px solid black;
     border-radius: 5px;
     margin-top: 10px;
-    
 }
+
 input[type=number]::-webkit-inner-spin-button { 
     -webkit-appearance: none;
     

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="../assets/icon_useall.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    <script src="main.js" defer></script>
+
+    <title>Edição Consumidor</title>
+  </head>
+
+  <body>
+    <main>
+      <form>
+        <h1>Edição <span>Consumidor</span></h1>
+        <ul>
+          <li>
+            <label for="cpfcnpj">CPF/CNPJ</label>
+            <input
+              class="cpfcnpj"
+              id="cpfcnpj"
+              type="text"
+              name="cpfcnpj"
+              placeholder="CPF/CNPJ"
+              autocomplete="off"
+            />
+          </li>
+  
+          <li>
+            <label for="status">Status da UC</label>
+            <select id="status">
+              <option value="true">Ativo</option>
+              <option value="false">Inativo</option>
+            </select>
+          </li>
+        </ul>
+        <button type="submit" id="btnAlterarCad">ALTERAR CADASTRO</button>
+  
+      </main>
+      </form>
+      <footer>
+      <img src="../assets/logo_useall.png" alt="logo useall" />
+    </footer>
+  </body>
+</html>
