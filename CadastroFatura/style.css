@@ -15,6 +15,11 @@ h1 {
     text-align: center;
     font-family: 'Roboto', sans-serif;
 }
+h2{
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    margin: 1rem;
+}
 
 span {
     color: #644FE0;
@@ -36,13 +41,12 @@ form {
     font-weight: bolder;
 }
 
-table, td {
-    border: 1px solid black;
+
+th{
     padding: 4px;
-    border-radius: 8px;
 }
 
-label, input {
+.label-input label, input {
     display: block;
     margin-top: 10px;
     width: 300px;
@@ -61,14 +65,12 @@ input {
 }
 
 #btn {
-    margin: 30px 0;
     /*para ter um espaçamento entre eles*/
-    width: 305.6px;
+
     color: rgb(255, 255, 255);
     height: 34px;
     background: rgb(48, 46, 46);
     border-radius: 5px;
-    letter-spacing: 1px;
     font-weight: bold;
     transition: background-color 0.3s ease;
 }
@@ -93,10 +95,39 @@ input::placeholder {
     display: none;
 }
 
-.comTabela {
-    display: grid;
-    grid-template-columns: 50% 50%;
+.tabelaAdd div {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0.5rem;
+    margin-bottom: 5px;
+    align-items: flex-start;
 }
+div input label{
+    width: 150px !important;
+}
+.tabelaAdd{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+ thead th{
+    background: rgb(48, 46, 46);
+    border: 1px solid black;
+    color: white;
+}
+
+tbody th{
+    border: 1px solid black;
+    padding: 8px;
+}
+tbody tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+table{
+    border-collapse: collapse;
+}
+
 
 @media (max-width: 1300px), (max-height: 570px) {
     form {
@@ -121,11 +152,11 @@ input::placeholder {
         margin-top: 5px;
         width: 150px;
     }
-
-    #competencia, #btn {
+    #competencia {
         width: 150px;
+        height: 31px;
     }
-
+    
     #btn {
         margin: 15px 0;
     }
