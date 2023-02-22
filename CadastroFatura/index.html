@@ -15,62 +15,93 @@
 </head>
 
 <body>
-  <form>
-    <div class="label-input">
-      <h1>Cadastro <span>Faturas</span></h1>
-      <label for="num-medidor">Código da UC</label>
-      <input type="number" id="codUC" placeholder="Digite o código UC" autocomplete="off" />
-      <label for="cpfcnpj">CPF/CNPJ</label>
-      <input class="cpfcnpj" id="cpfcnpj" type="text" placeholder="CPF/CNPJ" autocomplete="off" />
-      <label for="competencia">Competência</label>
-      <input type="date" id="competencia" placeholder="Digite a Competência" />
-    </div>
-    <h2><span>Itens</span> da fatura</h2>
-    <main>
+  <main>
+    <form>
+      <h1>Cadastro<span> Faturas</span></h1>
       <div class="tabelaAdd">
-          <div class="descricao">
-            <label>Descrição</label>
-            <input type="text" id="codUC" placeholder="Descrição" />
+        <div>
+          <label for="cpfcnpj">CPF/CNPJ</label>
+          <input class="cpfcnpj" id="cpfcnpj" list="listaConsumidores" type="text" placeholder="CPF/CNPJ" autocomplete="off" />
+          <datalist id="listaConsumidores">
+
+          </datalist>
+        </div>
+        <div>
+          <label for="num-medidor">Código da UC</label>
+          <input type="number" id="codUC" placeholder="Digite o código UC" autocomplete="off" />
+        </div>
+        <div>
+          <label for="competencia">Competência</label>
+          <input type="date" id="competencia" placeholder="Digite a Competência" />
+        </div>
+      </div>
+      <h2>Itens da fatura</h2>
+
+      <div class="tabelaAdd">
+        <div class="descricao">
+          <label>Descrição</label>
+          <div id="dataListAdd">
+            <input type="text" id="itens" name="Itens" list="listaItens" placeholder="Descrição" />
+            <datalist id="listaItens">
+
+            </datalist>
+            <button id="btnAdicionar">+</button>
           </div>
-          <div class="Quantidade">
-            <label>Quantidade</label>
-            <input type="number" id="codUC" placeholder="Quantidade" />
-          </div>
-          <div class="ValorUnitario">
-            <label>Valor Unitario</label>
-            <input type="number" id="codUC" placeholder="valor unitario" /> 
-          </div>
-          <div> <input type="submit" id="btn" value="ADICIONAR ITEM" /> </div>
-      </div> 
+        </div>
+        <div class="Quantidade">
+          <label>Quantidade</label>
+          <input type="number" id="codUC" placeholder="Quantidade" />
+        </div>
+        <div class="ValorUnitario">
+          <label>Valor Unitario</label>
+          <input type="number" id="codUC" placeholder="valor unitario" />
+        </div>
+        <div> <input type="submit" class="btn" value="ADICIONAR ITEM" /> </div>
+      </div>
       <div>
-        <table class="hide"class="tabelaItens">
+        <table class="hide" class="tabelaItens">
           <thead>
-          <tr>
-            <th>Descrição</th>
-            <th>Quantidade</th>
-            <th>Valor Unitário</th>
-            <th>Valor Total</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th>consumo TSUD</th>
-            <th>150</th>
-            <th>0,55555</th>
-            <th>12</th>
-          </tr>
-          <tr>
-            <th>consumo TSUD</th>
-            <th>150</th>
-            <th>0,55555</th>
-            <th>12</th>
-          </tr>
-        </tbody>
+            <tr>
+              <th>Descrição</th>
+              <th>Quantidade</th>
+              <th>Valor Unitário</th>
+              <th>Valor Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>consumo TSUD</th>
+              <th>150</th>
+              <th>0,55555</th>
+              <th>12</th>
+            </tr>
+            <tr>
+              <th>consumo TSUD</th>
+              <th>150</th>
+              <th>0,55555</th>
+              <th>12</th>
+            </tr>
+          </tbody>
         </table>
-    </div>
-    </main>
+      </div>
+  </main>
   </form>
-  <img src="../assets/logo_useall.png" alt="logo useall" />
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
+      <h3>Cadastrar Item</h3>
+      <form>
+        <div id="input-modal">
+          <label>Nome:</label>
+          <input id="nome" type="text" required>
+        </div>
+        <input class="btn" id="btnSalvarItem" value="Salvar">
+      </form>
+    </div>
+  </div>
+  <footer>
+    <img src="../assets/logo_useall.png" alt="logo useall" />
+  </footer>
 </body>
 
 </html>
