@@ -39,7 +39,7 @@ label{
 
 }
 
-input {
+input, datalist {
     width: 300px;
     height: 28px;
     border: 1px solid black;
