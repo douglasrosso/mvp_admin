@@ -12,15 +12,25 @@ const urlConsumidor = "https://localhost:7230/consumidor/"
 
 let btnCadastrarItem = document.querySelector("#btnAdicionar")
 let modal = document.querySelector("#myModal");
-let btnAdcionaItem = document.querySelector("#btnSalvarItem")
+let btnSalvaItem = document.querySelector("#btnSalvarItem")
 let nomeItem = document.querySelector("#nome")
 let dataListItens = document.querySelector("#listaItens")
 let dataListCons = document.querySelector("#listaConsumidores")
 let documento = document.querySelector("#cpfcnpj")
+let quantidade = document.querySelector("#Quantidade")
+let valorUnitario = document.querySelector("#ValorUnitario")
+let btnAddItem = document.querySelector("#addItem")
+let inputDatalist = document.querySelector("#itens")
+let tabela = document.querySelector("tbody")
+
+console.log(tabela)
 let documentoDigitado
 let Itens = []
 let Consumidores = []
+let itens = []
 
+
+console.log(btnAddItem)
 function LimpaCampos() {
   documento.value = "";
   cep.value = "";
@@ -40,7 +50,7 @@ btnCadastrarItem.addEventListener('click', function (e) {
   }
 })
 
-btnAdcionaItem.addEventListener('click', function (e) {
+btnSalvaItem.addEventListener('click', function (e) {
   e.preventDefault();
   postItem();
 })
@@ -51,6 +61,23 @@ documento.addEventListener('keyup', function(){
       getConsumidores() 
     }
 })
+
+
+btnAddItem.addEventListener('click', function(e){
+  e.preventDefault()
+  let ItensFaturaReq = {
+    cod_item : inputDatalist.value,
+    quant_item : quantidade.value,
+    valor_item_consumo : valorUnitario.value
+  }
+  let linha = document.createElement("tr")
+  let coluna = document.createElement("th")
+  coluna.innerHTML = 
+  console.log(dataListItens.value)
+})
+
+
+
 function getConsumidores() {
   let request = fetch(urlConsumidor)
   console.log(dataListCons)
@@ -64,13 +91,13 @@ function getConsumidores() {
     })
   })
 }
-function criaListConsumidores(cons) {
-  let option = document.createElement("option")
-  option.classList.add("consumidor")
-  option.textContent = cons.doc_consumidor
-  option.value = cons.nome_Consumidor
-  dataListCons.appendChild(option)
-}
+// function criaListConsumidores(cons) {
+//   let option = document.createElement("option")
+//   option.classList.add(".consumidor")
+//   option.textContent = cons.doc_consumidor
+//   option.value = cons.nome_Consumidor
+//   dataListCons.appendChild(option)
+// }
 
 function getItens() {
   let request = fetch(urlItem)
@@ -85,7 +112,7 @@ function getItens() {
 }
 function criaListItens(itens) {
   let option = document.createElement("option")
-  option.classList.add("itens")
+  option.classList.add(".itens")
   option.textContent = itens.cod_item
   option.value = itens.nome_item
   dataListItens.appendChild(option)
@@ -93,20 +120,13 @@ function criaListItens(itens) {
 getItens()
 
 function removeOptionsItens() {
-  const option = document.querySelectorAll("itens")
-  console.log(option)
-  for (let o of option) {
+  let options = document.querySelectorAll("option")
+  console.log(options)
+  for (let o of options) {
     o.remove();
   }
 }
-function removeOptionsConsmidores() {
 
-  const option = document.querySelectorAll("consumidor")
-  console.log(option)
-  for (let o of option) {
-    o.remove();
-  }
-}
 
 
 function TiraSinais() {
