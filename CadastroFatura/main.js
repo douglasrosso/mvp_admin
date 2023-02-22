@@ -1,24 +1,113 @@
-var options = {
-  onKeyPress: function (cpf, ev, el, op) {
-    var masks = ["000.000.000-000", "00.000.000/0000-00"];
-    $(".cpfcnpj").mask(cpf.length > 14 ? masks[1] : masks[0], op);
-  },
-};
-$(".cpfcnpj").length > 11
-  ? $(".cpfcnpj").mask("00.000.000/0000-00", options)
-  : $(".cpfcnpj").mask("000.000.000-00#", options);
+const urlItem = "https://localhost:7230/Item";
+const urlConsumidor = "https://localhost:7230/consumidor/"
+// var options = {
+//   onKeyPress: function (cpf, ev, el, op) {
+//     var masks = ["000.000.000-000", "00.000.000/0000-00"];
+//     $(".cpfcnpj").mask(cpf.length > 14 ? masks[1] : masks[0], op);
+//   },
+// };
+// $(".cpfcnpj").length > 11
+//   ? $(".cpfcnpj").mask("00.000.000/0000-00", options)
+//   : $(".cpfcnpj").mask("000.000.000-00#", options);
 
-let documento = document.getElementById("cpfcnpj");
-let cep = document.getElementById("cep");
-let logradoro = document.getElementById("logradouro");
-let numeroCasa = document.getElementById("numerocasa");
-let complemento = document.getElementById("complemento");
-let numerodomedidor = document.getElementById("numerodomedidor");
-let bairro = document.getElementById("bairro");
-let codConsumidor;
-let documentoDigitado;
-let cepDigitado;
-let btn = document.getElementById("btn");
+let btnCadastrarItem = document.querySelector("#btnAdicionar")
+let modal = document.querySelector("#myModal");
+let btnAdcionaItem = document.querySelector("#btnSalvarItem")
+let nomeItem = document.querySelector("#nome")
+let dataListItens = document.querySelector("#listaItens")
+let dataListCons = document.querySelector("#listaConsumidores")
+let documento = document.querySelector("#cpfcnpj")
+let documentoDigitado
+let Itens = []
+let Consumidores = []
+
+function LimpaCampos() {
+  documento.value = "";
+  cep.value = "";
+  logradoro.value = "";
+  numeroCasa.value = "";
+  complemento.value = "";
+  numerodomedidor.value = "";
+  bairro.value = "";
+}
+btnCadastrarItem.addEventListener('click', function (e) {
+  e.preventDefault();
+  modal.style.display = "block";
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none"
+    }
+  }
+})
+
+btnAdcionaItem.addEventListener('click', function (e) {
+  e.preventDefault();
+  postItem();
+})
+documento.addEventListener('keyup', function(){
+  TiraSinais() 
+  console.log(documentoDigitado)
+    if(documentoDigitado.length == 5){
+      getConsumidores() 
+    }
+})
+function getConsumidores() {
+  let request = fetch(urlConsumidor)
+  console.log(dataListCons)
+  removeOptionsConsmidores()
+  console.log(dataListCons)
+  request.then(function (response) {
+    response.json().then(function (vetorCons) {
+      Consumidores = vetorCons
+      Consumidores.forEach(criaListConsumidores)
+
+    })
+  })
+}
+function criaListConsumidores(cons) {
+  let option = document.createElement("option")
+  option.classList.add("consumidor")
+  option.textContent = cons.doc_consumidor
+  option.value = cons.nome_Consumidor
+  dataListCons.appendChild(option)
+}
+
+function getItens() {
+  let request = fetch(urlItem)
+  removeOptionsItens()
+  request.then(function (response) {
+    response.json().then(function (vetorItens) {
+      Itens = vetorItens
+      Itens.forEach(criaListItens)
+
+    })
+  })
+}
+function criaListItens(itens) {
+  let option = document.createElement("option")
+  option.classList.add("itens")
+  option.textContent = itens.cod_item
+  option.value = itens.nome_item
+  dataListItens.appendChild(option)
+}
+getItens()
+
+function removeOptionsItens() {
+  const option = document.querySelectorAll("itens")
+  console.log(option)
+  for (let o of option) {
+    o.remove();
+  }
+}
+function removeOptionsConsmidores() {
+
+  const option = document.querySelectorAll("consumidor")
+  console.log(option)
+  for (let o of option) {
+    o.remove();
+  }
+}
+
 
 function TiraSinais() {
   if (documento.value.length == 14) {
@@ -35,58 +124,26 @@ function TiraSinais() {
       documento.value.slice(11, 15) +
       documento.value.slice(16, 18);
   }
-  cepDigitado =
-    cep.value.slice(0, 2) + cep.value.slice(3, 6) + cep.value.slice(7, 10);
 }
-
-function getConsumidor() {
-  TiraSinais();
-  fetch(`https://localhost:7230/Consumidor/Documento/${documentoDigitado}`)
-    .then((response) => response.json())
-    .then((data) => {
-      codConsumidor = data.cod_Consumidor;
-    })
-    .catch((error) => console.error(error));
-}
-
-// busca cod pelo documento
-function postUser() {
-  fetch(`https://localhost:7230/UC`, {
+function postItem() {
+  console.log()
+  let request = fetch(urlItem, {
     method: "POST",
     headers: {
       Accept: "*//*",
       "content-type": "application/json",
     },
     body: JSON.stringify({
-      cod_Consumidor: codConsumidor,
-      num_medidor: numerodomedidor.value,
-      num_casa: numeroCasa.value,
-      cep: cepDigitado,
-      logradouro: logradoro.value,
-      Bairro: bairro.value,
-      complemento: complemento.value,
+      nome_item: nomeItem.value
     }),
-  }).then(function (response) {
-    if (response.status == 201) {
-      alert("Consumidor Inserido");
-    } else {
-      alert("Houve um problema, no envio da requesição");
-    }
   });
+  request.then(function (res) {
+    if (res.status == 201) {
+      alert("Item salvo com sucesso")
+      nomeItem.value = "";
+      getItens()
+    } else if (res.status == 400) {
+      alert("Ocorreu um erro ao Salvar o Item")
+    }
+  })
 }
-
-function LimpaCampos() {
-  documento.value = "";
-  cep.value = "";
-  logradoro.value = "";
-  numeroCasa.value = "";
-  complemento.value = "";
-  numerodomedidor.value = "";
-  bairro.value = "";
-}
-
-btn.addEventListener("click", function (e) {
-  e.preventDefault();
-  postUser();
-  LimpaCampos();
-});
