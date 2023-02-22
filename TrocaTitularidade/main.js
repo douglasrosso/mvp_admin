@@ -36,10 +36,12 @@ function TiraSinais() {
 function verificaDoc() {
   fetch(
     `https://localhost:7230/Consumidor/Documento/${documentoDigitado}`
-  ).then((response) => {
-    if (response.status == 200) {
-      validacao = true;
-      codConsumidor = response.cod_Consumidor;
+  ).then(function (res) {
+    if (res.status == 200) {
+      res.json().then(function (cons) {
+        codConsumidor = cons.cod_Consumidor;
+        validacao = true;
+      });
     } else {
       validacao = false;
       alert("Documento não cadastrado");
@@ -48,6 +50,7 @@ function verificaDoc() {
 }
 
 function patchNewTitular() {
+  console.log(codConsumidor);
   if (validacao == true) {
     fetch(`https://localhost:7230/UC/TrocaTitularidade/${btnNumUC.value}`, {
       method: "PUT",
@@ -56,7 +59,7 @@ function patchNewTitular() {
         "Content-type": "application/json",
       },
       body: JSON.stringify({
-        Cod_consumidor: 5,
+        Cod_consumidor: codConsumidor,
       }),
     }).then(function (response) {
       if (response.status == 200) {
