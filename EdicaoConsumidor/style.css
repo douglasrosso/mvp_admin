@@ -1,146 +1,91 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
-
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
-:root {
-    font-size: 62.5%;
 }
 
 body {
-    background: rgb(255, 255, 255) url(../assets/background.png) center center no-repeat fixed;
-    background-size: cover;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     font-family: 'Roboto', sans-serif;
-    font-weight: 700;
-}
-
-h1 {
-    text-align: center;
-    margin: 2.3rem 0 2.5rem 0;
-    font-size: 3rem;
-}
-
-span {
-    color: #644FE0;
-    ;
+    height: 90vh;
+    background: rgb(0, 0, 0) url(../assets/background.png) center center no-repeat fixed;
+    background-size: cover;
 }
 
 main {
-    margin-top: 10%;
-    border-radius: 1.0rem;
-    background-color: white;
-    box-shadow: 1rem 7rem 30rem rgb(193, 192, 199);
-    max-width: 100.0rem;
-    padding: 0 10rem 4rem;
+    position: relative;
+    width: 450px;
+    height: 550px;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 1%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: 1px 0px 30px rgb(193, 192, 199);
 }
 
-label {
-    display: block;
-    margin-top: 10px;
-    font-size: 1.6rem;
+.container {
+    margin: 0 auto;
+    width: 50%;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
 }
 
-input, select {
-    width: 100%;
-    height: 3.2rem;
-    border: 1px solid black;
-    border-radius: 5px;
-    margin-top: 10px;
-    width: 100%;
-}
-
-li {
-    list-style: none;
+.filho input {
+    padding: 3.5%;
+    margin-top: 3%;
+    margin-bottom: 5%;
+    width: 90%;
+    border-radius: 8px;
+    border: 1px solid #66666C;
 }
 
 button {
-    margin: 2rem 0 0 20%;
-    padding: 1rem .8rem;
-    color: rgb(255, 255, 255);
-    outline: none;
-    background: rgb(48, 46, 46);
+    font-family: 'Roboto', sans-serif;
+    padding: 3.5%;
+    margin-top: 3%;
+    width: 98%;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
+    border: none;
+    color: rgb(255, 255, 255);
+    background: rgb(48, 46, 46);
     letter-spacing: 1px;
     font-weight: bold;
-    text-align: center;
     transition: background-color 0.3s ease;
+
 }
 
 button:hover {
     background-color: #644FE0;
 }
 
-footer {
-    margin-top: 3.0rem;
+label {
+    font-size: 13px;
+    font-weight: bolder;
+}
+
+h1 {
+    font-size: 35px;
+    margin-top: 10%;
+    padding-bottom: 8px;
+    text-align: center;
+    padding-top: 30px;
+}
+
+p {
+    margin-bottom: 10%;
+    font-size: 13px;
+}
+
+span {
+    color: #644FE0;
 }
 
 img {
     position: relative;
     left: 50%;
     transform: translateX(-50%);
-    margin-top: .3%;
-}
-
-::placeholder {
-    padding-left: 5px;
-}
-
-@media (min-width: 1800px) {
-    main {
-        width: clamp(90rem, 1px + 1vw, 180rem);
-        padding: 0 10rem 6rem;
-    }
-
-    h1 {
-        font-size: 6rem;
-        margin: 9rem 0;
-    }
-
-    label, button, input, select {
-        font-size: 2.7rem;
-    }
-
-    input, select {
-        height: 6rem;
-        margin-bottom: 4rem;
-    }
-
-    button {
-        margin-bottom: 4rem;
-    }
-}
-
-@media (max-width: 800px) {
-    h1 {
-        font-size: 2rem;
-    }
-
-    main {
-        margin-top: 20%;
-        width: clamp(40rem, 1px + 1vw, 100rem);
-        padding: 0 8rem 4rem;
-    }
-
-    button {
-        font-size: 1rem;
-    }
-}
-
-@media (max-width: 450px) {
-    main {
-        margin-top: 20%;
-        width: clamp(30rem, 1px + 1vw, 100rem);
-        padding: 0 4rem 4rem;
-    }
-
-    button {
-        font-size: 1rem;
-    }
+    margin-top: 2%;
 }
