@@ -36,13 +36,20 @@ main {
 }
 
 h1 {
-    margin: 2.3rem 0 1rem 0;
-    font-size: 3rem;
+    font-size: 35px;
+    margin-top: 10%;
+    padding-bottom: 8px;
+    text-align: center;
+    padding-top: 30px;
 }
 
 span {
     color: #644FE0;
-    ;
+}
+
+p {
+    margin-bottom: 10%;
+    font-size: 13px;
 }
 
 li {
@@ -62,7 +69,6 @@ input {
     margin-top: 6px;
     width: 30rem;
 }
-
 
 button {
     margin-top: 30px;
@@ -92,13 +98,13 @@ footer {
     padding-left: 5px;
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 2560px) {
     h1 {
         font-size: 4rem;
     }
 
     main {
-        width:clamp(90rem, 1px + 1vw , 170rem);
+        width: clamp(90rem, 1px + 1vw, 170rem);
         padding: 0 8rem 4rem;
     }
 
@@ -107,7 +113,7 @@ footer {
         width: 50rem;
     }
 
-    button,  label, input {
+    button, label, input {
         font-size: 2rem;
     }
 }
@@ -122,9 +128,10 @@ footer {
 
     main {
         margin-top: 20%;
-        width:clamp(40rem, 1px + 1vw , 100rem);
+        width: clamp(40rem, 1px + 1vw, 100rem);
         padding: 0 8rem 4rem;
     }
+
     button {
         font-size: 1rem;
     }
@@ -133,7 +140,7 @@ footer {
 @media (max-width: 450px) {
     main {
         margin-top: 20%;
-        width:clamp(30rem, 1px + 1vw , 100rem);
+        width: clamp(30rem, 1px + 1vw, 100rem);
         padding: 0 4rem 4rem;
     }
 

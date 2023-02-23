@@ -26,59 +26,62 @@
 
   <body>
     <main>
-      <h1>Cadastro <span>Consumidor</span></h1>
+      <form>
+        <h1>Cadastro <span>Consumidor</span></h1>
 
-      <div class="container">
         <p>
           Preencha todos os dados solicitados abaixo para efetuar o cadastro
         </p>
 
-        <div class="filho">
-          <label for="nome">Nome</label>
-          <input
-            type="text"
-            name="nome"
-            id="nome"
-            placeholder="Digite o nome completo"
-            autofocus
-          />
-        </div>
+        <ul>
+          <li>
+            <label for="nome">Nome</label>
+            <input
+              type="text"
+              name="nome"
+              id="nome"
+              placeholder="Digite o nome completo"
+              autofocus
+            />
+          </li>
 
-        <div class="filho">
-          <label for="cpfcnpj">CPF/CNPJ</label>
-          <input
-            class="cpfcnpj"
-            id="cpfcnpj"
-            type="text"
-            name="cpfcnpj"
-            placeholder="CPF/CNPJ"
-            autocomplete="off"
-          />
-        </div>
+          <li>
+            <label for="cpfcnpj">CPF/CNPJ</label>
+            <input
+              class="cpfcnpj"
+              id="cpfcnpj"
+              type="text"
+              name="cpfcnpj"
+              placeholder="CPF/CNPJ"
+              autocomplete="off"
+            />
+          </li>
 
-        <div class="filho">
-          <label for="nome">Telefone</label>
-          <input
-            type="text"
-            name="nome"
-            id="telefone"
-            placeholder="Digite o número do telefone"
-          />
-        </div>
+          <li>
+            <label for="nome">Telefone</label>
+            <input
+              type="text"
+              name="nome"
+              id="telefone"
+              placeholder="Digite o número do telefone"
+            />
+          </li>
 
-        <div class="filho">
-          <label for="nome">Telefone 2 </label>
-          <input
-            type="text"
-            name="telefone2"
-            id="telefone2"
-            placeholder="Opcional"
-          />
-        </div>
+          <li>
+            <label for="nome">Telefone 2 </label>
+            <input
+              type="text"
+              name="telefone2"
+              id="telefone2"
+              placeholder="Opcional"
+            />
+          </li>
+        </ul>
         <button type="submit">EFETUAR CADASTRO</button>
-      </div>
+      </form>
     </main>
-
-    <img src="../assets/logo_useall.png" alt="logo useall" />
+    <footer>
+      <img src="../assets/logo_useall.png" alt="logo useall" />
+    </footer>
   </body>
 </html>
