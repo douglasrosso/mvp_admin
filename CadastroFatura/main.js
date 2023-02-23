@@ -68,8 +68,8 @@ btnAddItem.addEventListener('click', function (e) {
 
   let ItensFaturaReq = {
     cod_item: inputDatalist.value,
-    quant_item: quantidade.value,
-    valor_item_consumo: valorUnitario.value
+    quantItem: parseFloat(quantidade.value),
+    valorItem:parseFloat(valorUnitario.value)
   }
   itensFatura.push(ItensFaturaReq)
   let linha = document.createElement("tr")
