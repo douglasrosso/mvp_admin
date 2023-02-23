@@ -1,21 +1,23 @@
 const urlItem = "https://localhost:7230/Item";
 const urlConsumidor = "https://localhost:7230/consumidor/"
-// var options = {
-//   onKeyPress: function (cpf, ev, el, op) {
-//     var masks = ["000.000.000-000", "00.000.000/0000-00"];
-//     $(".cpfcnpj").mask(cpf.length > 14 ? masks[1] : masks[0], op);
-//   },
-// };
-// $(".cpfcnpj").length > 11
-//   ? $(".cpfcnpj").mask("00.000.000/0000-00", options)
-//   : $(".cpfcnpj").mask("000.000.000-00#", options);
+const urlFatura = "https://localhost:7230/fatura/"
+var options = {
+  onKeyPress: function (cpf, ev, el, op) {
+    var masks = ["000.000.000-000", "00.000.000/0000-00"];
+    $(".cpfcnpj").mask(cpf.length > 14 ? masks[1] : masks[0], op);
+  },
+};
+$(".cpfcnpj").length > 11
+  ? $(".cpfcnpj").mask("00.000.000/0000-00", options)
+  : $(".cpfcnpj").mask("000.000.000-00#", options);
 
 let btnCadastrarItem = document.querySelector("#btnAdicionar")
 let modal = document.querySelector("#myModal");
 let btnSalvaItem = document.querySelector("#btnSalvarItem")
 let nomeItem = document.querySelector("#nome")
 let dataListItens = document.querySelector("#listaItens")
-let dataListCons = document.querySelector("#listaConsumidores")
+//let dataListCons = document.querySelector("#listaConsumidores")
+let codigoUC = document.querySelector("#codUC")
 let documento = document.querySelector("#cpfcnpj")
 let quantidade = document.querySelector("#Quantidade")
 let valorUnitario = document.querySelector("#ValorUnitario")
@@ -23,11 +25,13 @@ let btnAddItem = document.querySelector("#addItem")
 let inputDatalist = document.querySelector("#itens")
 let tabela = document.querySelector(".tabelaItens")
 let tabelabody = document.querySelector("tbody")
+let btnSalvaFatura = document.querySelector("#btnSalvarFatura")
 
 let documentoDigitado
+let codConsumidor
 let Itens = []
 let Consumidores = []
-let itemFatura = []
+let itensFatura = []
 
 
 function LimpaCampos() {
@@ -53,33 +57,33 @@ btnSalvaItem.addEventListener('click', function (e) {
   e.preventDefault();
   postItem();
 })
-documento.addEventListener('keyup', function(){
-  TiraSinais() 
-  console.log(documentoDigitado)
-    if(documentoDigitado.length == 5){
-      getConsumidores() 
-    }
-})
+// documento.addEventListener('keyup', function () {
+//   TiraSinais()
+//   console.log(documentoDigitado)
+//   if (documentoDigitado.length == 5) {
+//     getConsumidores()
+//   }
+// })
 
 
-btnAddItem.addEventListener('click', function(e){
+btnAddItem.addEventListener('click', function (e) {
   e.preventDefault()
 
   let ItensFaturaReq = {
-    cod_item : inputDatalist.value,
-    quant_item : quantidade.value,
-    valor_item_consumo : valorUnitario.value
+    cod_item: inputDatalist.value,
+    quant_item: quantidade.value,
+    valor_item_consumo: valorUnitario.value
   }
-  itemFatura.push(ItensFaturaReq)
+  itensFatura.push(ItensFaturaReq)
   let linha = document.createElement("tr")
   let coluna1 = document.createElement("th")
   let coluna2 = document.createElement("th")
   let coluna3 = document.createElement("th")
   let coluna4 = document.createElement("th")
   tabela.classList.remove("hide")
-  coluna1.innerHTML =  inputDatalist.value,
-  coluna2.innerHTML =  quantidade.value,
-  coluna3.innerHTML = valorUnitario.value 
+  coluna1.innerHTML = inputDatalist.value,
+    coluna2.innerHTML = quantidade.value,
+    coluna3.innerHTML = valorUnitario.value
   coluna4.innerHTML = quantidade.value * valorUnitario.value
   linha.appendChild(coluna1)
   linha.appendChild(coluna2)
@@ -87,22 +91,29 @@ btnAddItem.addEventListener('click', function(e){
   linha.appendChild(coluna4)
   tabelabody.appendChild(linha)
 })
+btnSalvaFatura.addEventListener('click', function (e) {
+  e.preventDefault()
+  TiraSinais()
+  getConsumidor()
+  postFatura()
+})
 
-
-
-function getConsumidores() {
+function getConsumidor() {
   let request = fetch(urlConsumidor)
   console.log(dataListCons)
- // removeOptionsConsmidores()
-  console.log(dataListCons)
   request.then(function (response) {
-    response.json().then(function (vetorCons) {
-      Consumidores = vetorCons
-      Consumidores.forEach(criaListConsumidores)
+    if (response.status == 200) {
+      res.json().then(function (cons) {
+        codConsumidor = cons.cod_Consumidor;
+      })
+    } else {
+      alert("Documento Invalido")
+    }
 
-    })
   })
 }
+
+
 // function criaListConsumidores(cons) {
 //   let option = document.createElement("option")
 //   option.classList.add(".consumidor")
@@ -176,6 +187,37 @@ function postItem() {
       getItens()
     } else if (res.status == 400) {
       alert("Ocorreu um erro ao Salvar o Item")
+    }
+  })
+}
+function postFatura() {
+  let request = fetch(urlFatura, {
+    method: 'POST',
+    headers: {
+      "Accept": "*//*",
+      "content-type": "application/json"
+    },
+    body: JSON.stringify({
+      Cod_Consumidor: documentoDigitado,
+      Cod_uc: codigoUC.value,
+      Competencia: "2023/01/20",
+      itemFatura: itensFatura,
+    })
+
+  })
+  request.then(function (res) {
+    console.log(res.status)
+    if (res.status == 201) {
+      alert("Fatura Cadastrada com sucesso")
+      //limpa campos
+    } else if (res.status == 404) {
+      alert("Você não possui cadastro na distribuidora")
+    }
+    else if (res.status == 409) {
+      alert("email ja cadastrado")
+    }
+    else {
+      alert("Não foi possivel efetuar o cadastro")
     }
   })
 }
