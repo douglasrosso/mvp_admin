@@ -14,7 +14,7 @@ function putStatus() {
     }),
   }).then(function (response) {
     if (response.status == 204) {
-      alert("Status da UC alterado para ");
+      alert(`Status da UC alterado`);
     } else {
       alert("Houve um problema, no envio da requesição");
     }
