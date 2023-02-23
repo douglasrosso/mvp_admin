@@ -69,6 +69,7 @@ function getConsumidor() {
 
 // busca cod pelo documento
 function postUser() {
+  TiraSinais();
   if (validacao == true) {
     fetch(`https://localhost:7230/UC`, {
       method: "POST",
