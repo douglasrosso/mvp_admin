@@ -21,16 +21,15 @@ let quantidade = document.querySelector("#Quantidade")
 let valorUnitario = document.querySelector("#ValorUnitario")
 let btnAddItem = document.querySelector("#addItem")
 let inputDatalist = document.querySelector("#itens")
-let tabela = document.querySelector("tbody")
+let tabela = document.querySelector(".tabelaItens")
+let tabelabody = document.querySelector("tbody")
 
-console.log(tabela)
 let documentoDigitado
 let Itens = []
 let Consumidores = []
-let itens = []
+let itemFatura = []
 
 
-console.log(btnAddItem)
 function LimpaCampos() {
   documento.value = "";
   cep.value = "";
@@ -65,15 +64,28 @@ documento.addEventListener('keyup', function(){
 
 btnAddItem.addEventListener('click', function(e){
   e.preventDefault()
+
   let ItensFaturaReq = {
     cod_item : inputDatalist.value,
     quant_item : quantidade.value,
     valor_item_consumo : valorUnitario.value
   }
+  itemFatura.push(ItensFaturaReq)
   let linha = document.createElement("tr")
-  let coluna = document.createElement("th")
-  coluna.innerHTML = 
-  console.log(dataListItens.value)
+  let coluna1 = document.createElement("th")
+  let coluna2 = document.createElement("th")
+  let coluna3 = document.createElement("th")
+  let coluna4 = document.createElement("th")
+  tabela.classList.remove("hide")
+  coluna1.innerHTML =  inputDatalist.value,
+  coluna2.innerHTML =  quantidade.value,
+  coluna3.innerHTML = valorUnitario.value 
+  coluna4.innerHTML = quantidade.value * valorUnitario.value
+  linha.appendChild(coluna1)
+  linha.appendChild(coluna2)
+  linha.appendChild(coluna3)
+  linha.appendChild(coluna4)
+  tabelabody.appendChild(linha)
 })
 
 
@@ -81,7 +93,7 @@ btnAddItem.addEventListener('click', function(e){
 function getConsumidores() {
   let request = fetch(urlConsumidor)
   console.log(dataListCons)
-  removeOptionsConsmidores()
+ // removeOptionsConsmidores()
   console.log(dataListCons)
   request.then(function (response) {
     response.json().then(function (vetorCons) {
@@ -113,8 +125,8 @@ function getItens() {
 function criaListItens(itens) {
   let option = document.createElement("option")
   option.classList.add(".itens")
-  option.textContent = itens.cod_item
-  option.value = itens.nome_item
+  option.textContent = itens.nome_item
+  option.value = itens.cod_item
   dataListItens.appendChild(option)
 }
 getItens()
