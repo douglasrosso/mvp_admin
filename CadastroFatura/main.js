@@ -1,6 +1,6 @@
 const urlItem = "https://localhost:7230/Item";
 const urlConsumidor = "https://localhost:7230/consumidor/"
-const urlFatura = "https://localhost:7230/fatura/"
+const urlFatura = "https://localhost:7230/Fatura/"
 var options = {
   onKeyPress: function (cpf, ev, el, op) {
     var masks = ["000.000.000-000", "00.000.000/0000-00"];
@@ -18,6 +18,7 @@ let nomeItem = document.querySelector("#nome")
 let dataListItens = document.querySelector("#listaItens")
 //let dataListCons = document.querySelector("#listaConsumidores")
 let codigoUC = document.querySelector("#codUC")
+let competencia = document.querySelector("#competencia")
 let documento = document.querySelector("#cpfcnpj")
 let quantidade = document.querySelector("#Quantidade")
 let valorUnitario = document.querySelector("#ValorUnitario")
@@ -34,14 +35,10 @@ let Consumidores = []
 let itensFatura = []
 
 
-function LimpaCampos() {
-  documento.value = "";
-  cep.value = "";
-  logradoro.value = "";
-  numeroCasa.value = "";
-  complemento.value = "";
-  numerodomedidor.value = "";
-  bairro.value = "";
+function LimpaCamposItens() {
+      inputDatalist.value = ""
+      quantidade.value = ""
+      valorUnitario.value = ""
 }
 btnCadastrarItem.addEventListener('click', function (e) {
   e.preventDefault();
@@ -90,6 +87,7 @@ btnAddItem.addEventListener('click', function (e) {
   linha.appendChild(coluna3)
   linha.appendChild(coluna4)
   tabelabody.appendChild(linha)
+  LimpaCamposItens();
 })
 btnSalvaFatura.addEventListener('click', function (e) {
   e.preventDefault()
@@ -100,12 +98,12 @@ btnSalvaFatura.addEventListener('click', function (e) {
 
 function getConsumidor() {
   let request = fetch(urlConsumidor)
-  console.log(dataListCons)
+  //console.log(dataListCons)
   request.then(function (response) {
     if (response.status == 200) {
-      res.json().then(function (cons) {
+      response.json().then(function (cons) {
         codConsumidor = cons.cod_Consumidor;
-      })
+      });
     } else {
       alert("Documento Invalido")
     }
@@ -169,7 +167,7 @@ function TiraSinais() {
   }
 }
 function postItem() {
-  console.log()
+ if(codConsumidor){
   let request = fetch(urlItem, {
     method: "POST",
     headers: {
@@ -189,8 +187,16 @@ function postItem() {
       alert("Ocorreu um erro ao Salvar o Item")
     }
   })
+ }
+
 }
 function postFatura() {
+  console.log(codConsumidor)
+  console.log(codigoUC.value)
+  console.log(competencia.value)
+  console.log(itensFatura)
+  itensFatura = JSON.stringify(itensFatura)
+  console.log(itensFatura)
   let request = fetch(urlFatura, {
     method: 'POST',
     headers: {
@@ -200,7 +206,7 @@ function postFatura() {
     body: JSON.stringify({
       Cod_Consumidor: documentoDigitado,
       Cod_uc: codigoUC.value,
-      Competencia: "2023/01/20",
+      Competencia: competencia.value,
       itemFatura: itensFatura,
     })
 
