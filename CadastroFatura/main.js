@@ -1,5 +1,5 @@
 const urlItem = "https://localhost:7230/Item";
-const urlConsumidor = "https://localhost:7230/consumidor/"
+const urlConsumidor = "https://localhost:7230/consumidor/Documento/"
 const urlFatura = "https://localhost:7230/Fatura/"
 var options = {
   onKeyPress: function (cpf, ev, el, op) {
@@ -93,16 +93,18 @@ btnSalvaFatura.addEventListener('click', function (e) {
   e.preventDefault()
   TiraSinais()
   getConsumidor()
-  postFatura()
+  
 })
 
 function getConsumidor() {
-  let request = fetch(urlConsumidor)
-  //console.log(dataListCons)
+  let request = fetch(urlConsumidor+documentoDigitado)
+
   request.then(function (response) {
     if (response.status == 200) {
       response.json().then(function (cons) {
         codConsumidor = cons.cod_Consumidor;
+        console.log("get aqui-->",codConsumidor)
+        postFatura()
       });
     } else {
       alert("Documento Invalido")
@@ -167,7 +169,6 @@ function TiraSinais() {
   }
 }
 function postItem() {
- if(codConsumidor){
   let request = fetch(urlItem, {
     method: "POST",
     headers: {
@@ -189,14 +190,21 @@ function postItem() {
   })
  }
 
-}
+
 function postFatura() {
   console.log(codConsumidor)
   console.log(codigoUC.value)
   console.log(competencia.value)
   console.log(itensFatura)
-  itensFatura = JSON.stringify(itensFatura)
+ // itensFatura = JSON.stringify(itensFatura)
   console.log(itensFatura)
+  let teste = JSON.stringify({
+    Cod_Consumidor: codConsumidor,
+    Cod_uc: codigoUC.value,
+    Competencia: competencia.value,
+    itemFatura: itensFatura,
+  })
+  console.log(teste)
   let request = fetch(urlFatura, {
     method: 'POST',
     headers: {
@@ -204,7 +212,7 @@ function postFatura() {
       "content-type": "application/json"
     },
     body: JSON.stringify({
-      Cod_Consumidor: documentoDigitado,
+      Cod_Consumidor: codConsumidor,
       Cod_uc: codigoUC.value,
       Competencia: competencia.value,
       itemFatura: itensFatura,
