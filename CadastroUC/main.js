@@ -65,6 +65,39 @@ function getConsumidor() {
       alert("Documento não cadastrado");
     }
   });
+
+}
+
+// function getCep(){
+//   TiraSinais()
+//   fetch(`viacep.com.br/ws/88906-024`)
+//     .then(response => response.json())
+//     .then(data => {
+//       data.forEach(item => {
+//         console.log(data)
+//         let option = document.createElement('option');
+//         console.log(option)
+//         option.textContent = item.cep
+//         option.value = item.cep
+        
+//         logradoro.value = item.logradoro
+//       });
+
+//     });
+// }
+
+
+function getCep() {
+  TiraSinais()
+
+  fetch(`https://viacep.com.br/ws/${cepDigitado}/json/`)
+    .then(response => response.json())
+    .then(data => {
+      bairro.value = data.bairro
+      logradoro.value = data.logradouro
+      complemento.value = data.complemento
+
+    });
 }
 
 // busca cod pelo documento
@@ -95,6 +128,14 @@ function postUser() {
     });
   }
 }
+
+var input = document.getElementById("cep")
+input.addEventListener("change", function () {
+
+  getCep()
+
+
+})
 
 documento.addEventListener("change", function () {
   getConsumidor();
